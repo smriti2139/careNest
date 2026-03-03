@@ -1,28 +1,14 @@
 import express from "express";
 import PDFDocument from "pdfkit";
-import jwt from "jsonwebtoken";
+import { protect } from "../middleware/authMiddleware.js";
 import Child from "../models/Child.js";
 import Vaccination from "../models/Vaccination.js";
 import Growth from "../models/Growth.js";
 
 const router = express.Router();
 
-router.get("/:childId", async (req, res) => {
+router.get("/:childId", protect, async (req, res) => {
   try {
-    const token = req.query.token;
-
-    if (!token) {
-      return res.status(401).json({ message: "Unauthorized: No token" });
-    }
-
-    let decoded;
-
-    try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET);
-    } catch (err) {
-      return res.status(401).json({ message: "Invalid token" });
-    }
-
     const child = await Child.findById(req.params.childId).populate("parentId");
 
     if (!child) {
@@ -80,7 +66,6 @@ router.get("/:childId", async (req, res) => {
     }
 
     doc.end();
-
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
