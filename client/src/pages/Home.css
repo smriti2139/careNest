@@ -1,0 +1,92 @@
+.home-container {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.tagline {
+  font-size: 20px;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.primary-btn {
+  background: #00c6ff;
+  color: black;
+}
+
+.primary-btn:hover {
+  background: #0072ff;
+  color: white;
+}
+
+.secondary-btn {
+  background: white;
+  color: black;
+}
+
+.secondary-btn:hover {
+  background: #ddd;
+}
+
+.features-section {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.features-section h2 {
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
+  background: rgba(0, 0, 0, 0.3);
+}

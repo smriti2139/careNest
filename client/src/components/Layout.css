@@ -1,0 +1,35 @@
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: #1e3c72;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.sidebar a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  background: #f5f6fa;
+}

@@ -1,0 +1,63 @@
+.growth-container {
+  padding: 30px;
+}
+
+.growth-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.growth-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.growth-form {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.growth-form input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.growth-form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #2c7be5;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.growth-form button:hover {
+  background-color: #1a68d1;
+}
+
+.growth-history {
+  margin-top: 20px;
+}
+
+.history-item {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.growth-card {
+  transition: 0.3s ease;
+}
+
+.growth-card:hover {
+  transform: translateY(-5px);
+}
