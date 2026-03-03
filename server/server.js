@@ -12,8 +12,12 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
+
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/children", childRoutes);
 app.use("/api/vaccinations", vaccinationRoutes);
@@ -21,14 +25,20 @@ app.use("/api/growth", growthRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/report", reportRoutes);
 
-mongoose.connect(process.env.MONGO_URI)
+// MongoDB Connection
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.error("MongoDB Error:", err));
 
+// Root Route
 app.get("/", (req, res) => {
   res.send("CareNest API Running");
 });
 
-app.listen(5000, "0.0.0.0", () => {
-  console.log("Server running on port 5000");
+// 🔥 IMPORTANT FOR RENDER
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
