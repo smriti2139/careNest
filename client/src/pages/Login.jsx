@@ -28,28 +28,29 @@ function Login() {
   }, [navigate]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await API.post("/auth/login", { email, password });
+  try {
+    const res = await API.post("/auth/login", { email, password });
 
-      const token = res.data.token;
-      localStorage.setItem("token", token);
+    console.log("FULL LOGIN RESPONSE:", res.data);
 
-      // 🔥 Decode role from token
-      const decoded = JSON.parse(atob(token.split(".")[1]));
+    const token = res.data.token;
+    localStorage.setItem("token", token);
 
-      if (decoded.role === "doctor") {
-        navigate("/doctor");
-      } else {
-        navigate("/dashboard");
-      }
+    const decoded = JSON.parse(atob(token.split(".")[1]));
 
-    } catch (err) {
-      alert(err.response?.data?.message || "Invalid credentials");
+    if (decoded.role === "doctor") {
+      navigate("/doctor");
+    } else {
+      navigate("/dashboard");
     }
-  };
 
+  } catch (err) {
+    console.log("LOGIN ERROR:", err.response?.data);
+    alert(err.response?.data?.message || "Invalid credentials");
+  }
+};
   return (
     <div className="auth-wrapper">
       <div className="auth-card">
