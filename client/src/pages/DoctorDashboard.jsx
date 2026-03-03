@@ -19,6 +19,24 @@ function DoctorDashboard() {
     }
   };
 
+  const downloadReport = async (childId, childName) => {
+    try {
+      const res = await API.get(`/report/${childId}`, {
+        responseType: "blob",
+      });
+
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `${childName}_report.pdf`);
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to download report");
+    }
+  };
+
   const filteredChildren = children.filter((child) =>
     child.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -27,7 +45,6 @@ function DoctorDashboard() {
     <Layout>
       <h2>Doctor Dashboard</h2>
 
-      {/* 🔍 Search Input */}
       <input
         type="text"
         placeholder="Search child by name..."
@@ -38,7 +55,7 @@ function DoctorDashboard() {
           marginBottom: "20px",
           width: "300px",
           borderRadius: "8px",
-          border: "1px solid #ccc"
+          border: "1px solid #ccc",
         }}
       />
 
@@ -52,7 +69,7 @@ function DoctorDashboard() {
               padding: "15px",
               marginBottom: "15px",
               background: "#f5f5f5",
-              borderRadius: "10px"
+              borderRadius: "10px",
             }}
           >
             <h3>{child.name}</h3>
@@ -61,6 +78,21 @@ function DoctorDashboard() {
             <p>DOB: {new Date(child.dob).toLocaleDateString()}</p>
             <p>Gender: {child.gender}</p>
             <p>Birth Weight: {child.birthWeight} kg</p>
+
+            <button
+              onClick={() => downloadReport(child._id, child.name)}
+              style={{
+                marginTop: "10px",
+                padding: "8px 15px",
+                backgroundColor: "#2c7be5",
+                color: "white",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF Report
+            </button>
           </div>
         ))
       )}
